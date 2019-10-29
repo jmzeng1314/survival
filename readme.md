@@ -47,7 +47,8 @@ a=read.table('PLEKHA5-BRCA.tsv',header = T,sep = '\t')
 head(a)
 dat=a[a$sample_type.samples=='Primary Tumor',4:6]
 head(dat)
-dat$vital_status.demographic=ifelse(dat$vital_status.demographic=='Alive',1,0)
+dat$vital_status.demographic=ifelse(dat$vital_status.demographic=='Alive',0,1)
+# 这里需要注意看文档，生存状态里面的Alive通常标记为0
 surv_rnaseq.cut <- surv_cutpoint(
   dat,
   time = "OS.time",
